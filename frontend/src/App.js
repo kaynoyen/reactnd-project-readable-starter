@@ -1,18 +1,11 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import { connect } from 'react-redux'
 import { fetchCategories } from './actions'
+import { Route, Link } from 'react-router-dom'
+import NavBar from './components/NavBar'
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      backend: 'backend-data',
-      categories: 'empty'
-    }
-  }
 
   componentDidMount() {
     const { fetchCategories } = this.props
@@ -21,21 +14,14 @@ class App extends Component {
 
   render() {
 
-
+    const { categories, isFetching } = this.props
 
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Well, React</h1>
+          <h1 className="App-title">Readable</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Talking to the backend yields these categories: <br/>
-          {this.state.categories}
-        </p>
+          <NavBar categories={categories} isFetching={isFetching}/>
       </div>
     );
   }
@@ -43,7 +29,8 @@ class App extends Component {
 
 function mapStateToProps ({categories}) {
   return {
-    categories
+    categories: categories,
+    isFetching: categories.isFetching,
   }
 }
 
