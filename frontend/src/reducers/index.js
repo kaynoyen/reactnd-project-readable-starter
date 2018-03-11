@@ -1,34 +1,37 @@
+import {
+	RECEIVE_CATEGORIES,
+	REQUEST_CATEGORIES
+} from '../actions'
+
 import { combineReducers } from 'redux'
 
-function one (state = {}, action) {
+function categories (state = {
+		isFetching: false,
+		items: []
+		}, 
+		action
+	) {
 	switch (action.type) {
-		case true :
-			const { recipe } = action
 
-			return {
-				...state,
-				[recipe.label]: recipe
-			}
-		default :
-			return state
-	}
-}
+		case REQUEST_CATEGORIES :
 
-function two (state = {}, action) {
-	switch (action.type) {
-		case true :
-			const { recipe } = action
+			return Object.assign({}, state, {
+  				isFetching: true
+			})
 
-			return {
-				...state,
-				[recipe.label]: recipe
-			}
+		case RECEIVE_CATEGORIES :
+
+			return Object.assign({}, state, {
+				isFetching: false,
+  				items: action.items,
+  				lastUpdated: action.receivedAt,
+			})
+
 		default :
 			return state
 	}
 }
 
 export default combineReducers({
-	one,
-	two,
+	categories,
 })
