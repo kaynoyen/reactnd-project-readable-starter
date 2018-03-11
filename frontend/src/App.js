@@ -1,42 +1,51 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchCategories } from './actions'
-import { Route, Link } from 'react-router-dom'
+import { fetchCategories, fetchPosts } from './actions'
+
 import NavBar from './components/NavBar'
+
+import ListPosts from './components/ListPosts'
 
 class App extends Component {
 
   componentDidMount() {
-    const { fetchCategories } = this.props
+    const { fetchCategories, fetchPosts } = this.props
     fetchCategories()
+    fetchPosts()
   }
 
   render() {
 
-    const { categories, isFetching } = this.props
+    const { categories, posts } = this.props
+
+    console.log(posts)
 
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Readable</h1>
+          <NavBar className="nav-bar" categories={categories} isFetching={categories.isFetching}/>
         </header>
-          <NavBar categories={categories} isFetching={isFetching}/>
+          
+          
+          <ListPosts posts={posts} isFetching={posts.isFetching}/>
       </div>
     );
   }
 }
 
-function mapStateToProps ({categories}) {
+function mapStateToProps ({categories, posts}) {
   return {
     categories: categories,
-    isFetching: categories.isFetching,
+    posts: posts,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     fetchCategories: () => dispatch(fetchCategories()),
+    fetchPosts: () => dispatch(fetchPosts()),
   }
 }
 

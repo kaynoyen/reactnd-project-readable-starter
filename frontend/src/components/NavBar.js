@@ -4,7 +4,7 @@ import { Route, Link } from 'react-router-dom'
 export default function NavBar ({categories, isFetching}) {
 
 	return (
-		<ul>
+		<ul className="nav-bar">
 	   		{isFetching ? 
 	       		<p> LOADING... </p> : 
 	            categories.items.map(cat => (
