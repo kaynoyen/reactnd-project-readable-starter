@@ -2,54 +2,17 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchCategories, fetchPosts } from './actions'
-
 import { Route, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
-
-function NavBar ({categories, isFetching}) {
-
-  return (
-    <ul className="nav-bar">
-        {isFetching ? 
-            <p> LOADING... </p> : 
-              categories.items.map(cat => (
-                <Link key= {cat.path} to={cat.path}>
-                  <li key={cat.name} >{cat.name}</li>
-                </Link>
-              ))}
-      </ul>
-    )
-}
-
-function Post ({detail}) {
-  const { id, timestamp, title, body, author, category} = detail
-  
-
-  return (
-    <div>
-      <h2>{title}</h2>
-      <h3>{author}</h3>
-      <p>{body}</p>
-      <hr/>
-    </div>
-
-  )
-}
-
-function ListPosts ({posts, isFetching}) {
-
-  return (
-    isFetching ? <p> LOADING... </p> :
-    posts.items.map(post => (
-      <Post key={post.id} detail={post}/>
-      ))
-    )
-}
+import Navigation from './components/Navigation'
+import ListPosts from './components/ListPosts'
 
 class App extends Component {
 
   componentDidMount() {
     const { fetchCategories, fetchPosts } = this.props
+
     fetchCategories()
     fetchPosts()
   }
@@ -57,16 +20,19 @@ class App extends Component {
   render() {
 
     const { categories, posts } = this.props
-    console.log(posts)
 
     return (
       <div className="App">
+
         <header className="App-header">
-          <h1 className="App-title">Readable</h1>
+          <h1 className="App-title"><Link style={{color: 'white', textDecoration: 'none'}} to="/">Readable</Link></h1>
         </header>
-          
-          <NavBar categories={categories} isFetching={categories.isFetching}/>
-          <ListPosts posts={posts} isFetching={posts.isFetching}/>
+
+          <Route path="/" component={Navigation}/>
+          <Route path="/" exact component={ListPosts}/>
+          <Route path="/:category" component={ListPosts}/>
+          <Route path="/:category/:id" component={Post}/>
+
       </div>
     );
   }
@@ -86,4 +52,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
