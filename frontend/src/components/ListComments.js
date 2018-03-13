@@ -6,7 +6,7 @@ import { fetchComments } from '../actions'
 
 function Comment ({ data }){
 
-  const {body, author, timestamp, voteCount} = data
+  const {body, author, timestamp, voteScore} = data
 
   return(
     <div style={{
@@ -15,12 +15,23 @@ function Comment ({ data }){
       borderStyle: 'solid', 
       borderRadius: 3, 
       borderWidth: 1,
-      maxWidth: 550,
+      maxWidth: 500,
+      minWidth: 400,
       borderColor: '#888888',
       backgroundColor: '#f2f2f2',
       }}>
-      <p>{author}</p>
-      <p>{body}</p>
+      <div>
+        <p>{author}</p>
+        <p>{body}</p>
+      </div>
+
+      <div>
+        <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/f`}>edit</Link>
+        <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/g`}>delete</Link>
+        <Link style={{marginRight: 10, float: 'right', color: 'red', fontWeight: 'bold'}} to={'/T'}>downvote</Link>
+        <Link style={{marginRight: 10, float: 'right', color: 'green', fontWeight: 'bold'}} to={'/D'}>upvote</Link>
+        <span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
+      </div>
     </div>
     )
 }
