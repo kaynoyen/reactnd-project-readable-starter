@@ -5,16 +5,16 @@ import { Route, Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 function Post ({detail}) {
-  const { id, timestamp, title, body, author, category} = detail
+  const { id, timestamp, title, body, author, category, commentCount, voteScore} = detail
 
   return (
     <div>
       <hr/>
-      <Link to={`${category}/${id}`}><h2>{title}</h2></Link>
+      <Link to={`/${category}/${id}`}><h2>{title}</h2></Link>
       <h3>{author}</h3>
       <p>{body}</p>
-      <Link to={`${category}/${id}/edit`}>edit</Link> <br/>
-      <Link to={`${category}/${id}/delete`}>delete</Link>
+      <Link to={`/${category}/${id}/edit`}>edit</Link> <br/>
+      <Link to={`/${category}/${id}/delete`}>delete</Link>
     </div>
   )
 }

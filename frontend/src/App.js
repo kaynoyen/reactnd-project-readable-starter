@@ -7,6 +7,7 @@ import { withRouter } from 'react-router'
 
 import Navigation from './components/Navigation'
 import ListPosts from './components/ListPosts'
+import ListComments from './components/ListComments'
 
 class App extends Component {
 
@@ -29,9 +30,8 @@ class App extends Component {
         </header>
 
           <Route path="/" component={Navigation}/>
-          <Route path="/" exact component={ListPosts}/>
-          <Route path="/:category" component={ListPosts}/>
-          <Route path="/:category/:id" component={Post}/>
+          <Route path="/:category?" component={ListPosts}/>
+          <Route path="/:category/:id" component={ListComments}/>
 
       </div>
     );

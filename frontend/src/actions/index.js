@@ -51,3 +51,40 @@ export function fetchPosts() {
       		.then((data) => dispatch(receivePosts(data)))
 	}
 }
+
+// FETCH COMMENTS
+
+export const REQUEST_COMMENTS = "REQUEST_COMMENTS"
+export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS"
+export const FETCH_COMMENTS = "FETCH_COMMENTS"
+
+export const requestComments = (id) => ({
+	type: REQUEST_COMMENTS,
+	id,
+})
+
+export const receiveComments = (id, json) => ({
+  type: RECEIVE_COMMENTS,
+  items: json,
+  receivedAt: Date.now(),
+  id
+})
+
+export function fetchComments(id) {
+	return dispatch => {
+		dispatch(requestComments(id))
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/comments`
+		return fetch(url, { headers: { 'Authorization': 'whatever-you-want' },
+                 credentials: 'include' } )
+      		.then( (res) => { return(res.json())})
+      		.then((data) => dispatch(receiveComments(id, data)))
+	}
+}
+
+
+
+
+
+
+
+

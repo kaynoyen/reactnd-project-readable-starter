@@ -17,7 +17,7 @@ class Navigation extends Component {
 				<ul>
 					{categories.items.map(category => (
 						<li key={category.name}>
-							<Link to={category.path}>{category.name}</Link>
+							<Link to={`/${category.path}`}>{category.name}</Link>
 						</li>))}
 				</ul>
 

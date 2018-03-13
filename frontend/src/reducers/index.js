@@ -1,11 +1,10 @@
 import {
 	RECEIVE_CATEGORIES,
-	REQUEST_CATEGORIES
-} from '../actions'
-
-import {
+	REQUEST_CATEGORIES,
 	RECEIVE_POSTS,
-	REQUEST_POSTS
+	REQUEST_POSTS,
+	RECEIVE_COMMENTS,
+	REQUEST_COMMENTS,
 } from '../actions'
 
 import { combineReducers } from 'redux'
@@ -64,7 +63,48 @@ function posts (state = {
 	}
 }
 
+function comments (state = {
+	isFetching: false,
+	}, 
+	action
+	) {
+	switch (action.type) {
+
+		case REQUEST_COMMENTS :
+			return Object.assign({}, state, {
+				isFetching: true,
+				[action.id]: {
+					isFetching: true,
+				}
+			})
+
+		case RECEIVE_COMMENTS :
+
+			return Object.assign({}, state, {
+				isFetching: false,
+				[action.id]: {
+					isFetching: false,
+	  				items: action.items,
+	  				lastUpdated: action.receivedAt,
+  				}
+			})
+
+		default :
+			return state
+	}
+}
+
 export default combineReducers({
 	categories,
 	posts,
+	comments
 })
+
+
+
+
+
+
+
+
+
