@@ -8,13 +8,28 @@ function Post ({detail}) {
   const { id, timestamp, title, body, author, category, commentCount, voteScore} = detail
 
   return (
-    <div>
-      <hr/>
+    <div style={{
+    	margin: 20,
+    	padding: 10,
+    	borderStyle: 'solid', 
+    	borderRadius: 3, 
+    	borderWidth: 1,
+    	borderColor: '#888888',
+    	maxWidth: 550}}>
+
       <Link to={`/${category}/${id}`}><h2>{title}</h2></Link>
+
       <h3>{author}</h3>
       <p>{body}</p>
-      <Link to={`/${category}/${id}/edit`}>edit</Link> <br/>
-      <Link to={`/${category}/${id}/delete`}>delete</Link>
+      <div>
+	      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${id}/edit`}>edit</Link>
+	      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${id}/delete`}>delete</Link>
+	      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${id}/delete`}>comment</Link>
+	      <Link style={{marginRight: 10, float: 'right', color: 'red', fontWeight: 'bold'}} to={`/${category}/${id}/delete`}>downvote</Link>
+	      <Link style={{marginRight: 10, float: 'right', color: 'green', fontWeight: 'bold'}} to={`/${category}/${id}/delete`}>upvote</Link>
+	      
+      </div>
+      
     </div>
   )
 }

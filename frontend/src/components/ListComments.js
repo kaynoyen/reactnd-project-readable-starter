@@ -9,8 +9,16 @@ function Comment ({ data }){
   const {body, author, timestamp, voteCount} = data
 
   return(
-    <div>
-      <hr/>
+    <div style={{
+      margin: 20,
+      padding: 10,
+      borderStyle: 'solid', 
+      borderRadius: 3, 
+      borderWidth: 1,
+      maxWidth: 550,
+      borderColor: '#888888',
+      backgroundColor: '#f2f2f2',
+      }}>
       <p>{author}</p>
       <p>{body}</p>
     </div>
