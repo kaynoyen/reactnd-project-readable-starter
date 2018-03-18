@@ -86,15 +86,55 @@ export function fetchComments(id) {
 export const UPVOTE_POST = "UPVOTE_POST"
 export const DOWNVOTE_POST = "DOWNVOTE_POST"
 
-export const upvotePost = (id) => ({
+export const upVotePost = (id) => ({
 	type: UPVOTE_POST,
 	id,
 })
 
-export const downvotePost = (id) => ({
+export const downVotePost = (id) => ({
 	type: DOWNVOTE_POST,
 	id,
 })
+
+export function postUpVotePost(id) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'POST',
+			body: JSON.stringify({
+                    option: 'upVote'
+                }),
+		}).then((res) => dispatch(upVotePost(id)))
+		
+	}
+}
+
+export function postDownVotePost(id) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'POST',
+			body: JSON.stringify({
+                    option: 'downVote'
+                }),
+		}).then((res) => dispatch(downVotePost(id)))
+		
+	}
+}
+
+
+
+
 
 
 
