@@ -5,9 +5,12 @@ import {
 	REQUEST_POSTS,
 	RECEIVE_COMMENTS,
 	REQUEST_COMMENTS,
+	UPVOTE_POST,
+	DOWNVOTE_POST,
 } from '../actions'
-
 import { combineReducers } from 'redux'
+
+
 
 function categories (state = {
 		isFetching: false,
@@ -38,7 +41,7 @@ function categories (state = {
 
 function posts (state = {
 		isFetching: false,
-		items: []
+		items: {}
 		}, 
 		action
 	) {
@@ -54,9 +57,39 @@ function posts (state = {
 
 			return Object.assign({}, state, {
 				isFetching: false,
-  				items: action.items,
+  				items: action.items.reduce((all, one)=>(
+  					{...all,
+  						[one.id]: one,
+  						}
+  					),{}),
   				lastUpdated: action.receivedAt,
 			})
+
+		case UPVOTE_POST :
+
+			return {
+				...state,
+					items: {
+						...state.items,
+						[action.id]: {
+							...state.items[action.id],
+							voteScore: state.items[action.id].voteScore + 1
+						}
+					}
+				}
+
+		case DOWNVOTE_POST :
+
+			return {
+				...state,
+					items: {
+						...state.items,
+						[action.id]: {
+							...state.items[action.id],
+							voteScore: state.items[action.id].voteScore - 1
+						}
+					}
+				}
 
 		default :
 			return state

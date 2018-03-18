@@ -6,7 +6,7 @@ import { fetchComments } from '../actions'
 
 function Comment ({ data }){
 
-  const {body, author, timestamp, voteScore} = data
+  const {body, author, timestamp, voteScore, id} = data
 
   return(
     <div style={{

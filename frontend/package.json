@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "next": "^5.0.0",
+    "normalizr": "^3.2.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-loading": "^1.0.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",

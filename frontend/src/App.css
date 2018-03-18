@@ -17,6 +17,20 @@ a {
 	color: #111111;
 }
 
-a:hover {
+button {
+  margin: 10;
+}
+
+button:hover {
 	text-decoration: underline;
+}
+
+.vote {
+  float: right;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  color: white;
+  font-size: 14px;
+  margin-right: 5px;
 }
