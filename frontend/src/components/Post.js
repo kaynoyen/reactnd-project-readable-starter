@@ -11,15 +11,7 @@ class Post extends Component {
 	  const { postUpVotePost, postDownVotePost } = this.props
 
 	  return (
-	    <div style={{
-	    	margin: 20,
-	    	padding: 10,
-	    	borderStyle: 'solid', 
-	    	borderRadius: 3, 
-	    	borderWidth: 1,
-	    	borderColor: '#888888',
-	    	maxWidth: 500,
-	    	minWidth: 400}}>
+	    <div className='postBox'>
 
 	      <Link to={`/${category}/${id}`}><h3>{title}</h3></Link>
 
@@ -30,8 +22,8 @@ class Post extends Component {
 		      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${id}/edit`}>edit</Link>
 		      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${id}/delete`}>delete</Link>
 		      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${id}/delete`}>comment ({commentCount})</Link>
-		      <button className='vote' onClick ={() => postDownVotePost(id)} style={{backgroundColor: 'red'}}>downvote</button>
-		      <button className='vote' onClick ={() => postUpVotePost(id)} style={{backgroundColor: 'green'}}>upvote</button>
+		      <button className='vote-button' onClick ={() => postDownVotePost(id)} style={{backgroundColor: 'red'}}>downvote</button>
+		      <button className='vote-button' onClick ={() => postUpVotePost(id)} style={{backgroundColor: 'green'}}>upvote</button>
 		      <span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
 	      </div>
 	      

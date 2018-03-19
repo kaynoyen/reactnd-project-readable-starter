@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchCategories, fetchPosts } from './actions'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 import Navigation from './components/Navigation'
 import ListPosts from './components/ListPosts'
 import ListComments from './components/ListComments'
+import EditPost from './components/EditPost'
 
 class App extends Component {
 
@@ -29,9 +30,10 @@ class App extends Component {
           <h1 className="App-title"><Link style={{color: 'white', textDecoration: 'none'}} to="/">Readable</Link></h1>
         </header>
         <div>
-          <Route path="/" component={Navigation}/>
-          <Route path="/:category?" component={ListPosts}/>
-          <Route path="/:category/:id" component={ListComments}/>
+          <Route exact path="/" component={Navigation}/>
+          <Route exact path="/:category?" component={ListPosts}/>
+          <Route exact path="/:category/:id" component={ListComments}/>
+          <Route path="/:category/:id/edit" exact component={EditPost}/>
         </div>
       </div>
     );
