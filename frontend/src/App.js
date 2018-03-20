@@ -28,6 +28,8 @@ class App extends Component {
 
         <header className="App-header">
           <h1 className="App-title"><Link style={{color: 'white', textDecoration: 'none'}} to="/">Readable</Link></h1>
+          <button className='post-button'>new post</button>        
+
         </header>
         <div>
           <Route exact path="/" component={Navigation}/>

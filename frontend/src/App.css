@@ -36,7 +36,7 @@ button:hover {
 }
 
 .submit-button {
-  border: 0px;
+  border: 1px solid;
   box-shadow: none;
   border-radius: 0px;
   color: black;
@@ -46,6 +46,19 @@ button:hover {
   font-weight: bold;
 }
 
+.post-button {
+  border: 1px solid;
+  box-shadow: none;
+  border-radius: 0px;
+  color: white;
+  font-size: 14px;
+  margin-left: 190px;
+  margin-top: 18px;
+  background-color: black;
+  font-weight: bold;
+  float: left;
+}
+
 .postBox {
   margin: 20px;
   padding: 10px;
@@ -53,13 +66,31 @@ button:hover {
   border-radius: 3px;
   border-width: 1px;
   border-color: #888888;
-  max-width: 500px;
-  min-width: 400px;
+  width: 400px;
 }
 
 .text-input {
-  min-width: 200px;
-  margin: 5px;
+  width: 300px;
+  margin: 3px;
+  margin-left: 10px;
   padding: 10px;
 
+}
+
+.textarea-input {
+  width: 300px;
+  margin: 3px;
+  margin-left: 10px;
+  padding: 10px;
+  resize: none;
+  border-color: #dddddd;
+  border-width: 1px;
+  height: 80px;
+  vertical-align: middle;
+}
+
+.edit-label {
+  display: inline-block;
+  width: 50px;
+  text-align: right;
 }

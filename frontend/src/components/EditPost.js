@@ -12,26 +12,39 @@ class EditPost extends Component {
 		const { category, id } = this.props.match.params
 		const { posts } = this.props
 		const { postUpVotePost, postDownVotePost } = this.props
-
-		console.log(posts)
-
+		
 	  	return (
 
 	  		Object.keys(posts).length > 0 ? 
 
 			    <div className='postBox'>
 			    	<form>
-
-			    		<label>title<input defaultValue={posts[id].title} className='text-input' type='text' placeholder='title'/></label><br/>
-			    		<label>author<input defaultValue={posts[id].author} className='text-input' type='text' placeholder='author'/></label><br/>
-			    		<label>body<input defaultValue={posts[id].body} className='text-input' type='text' placeholder='body'/></label>
+			    	<h3>Edit post</h3>
+			    		<div>
+			    			<label className='edit-label'>Title: </label>
+			    			<input defaultValue={posts[id].title} className='text-input' type='text' placeholder='title' style={{verticalAlign: 'center'}}/>
+			    		</div>
+			    		<div>
+			    			<label className='edit-label'>Author: </label>
+			    			<input defaultValue={posts[id].author} className='text-input' type='text' placeholder='author' style={{verticalAlign: 'center'}}/>
+			    		</div>
+			    		<div>
+			    			<label className='edit-label'>Body: </label>
+			    			<textarea className='textarea-input' defaultValue={posts[id].body} type='text' placeholder='body'/>
+			    		</div>
+			    		<div style={{marginTop: 10}}>
+				    		<button className='submit-button' onClick ={() => postDownVotePost(id)} style={{backgroundColor: 'white'}}>submit</button>
+				    	
+				    		<button type='button' className='vote-button' onClick ={() => postDownVotePost(id)} style={{backgroundColor: 'red'}}>downvote</button>
+					   		<button type='button' className='vote-button' onClick ={() => postUpVotePost(id)} style={{backgroundColor: 'green'}}>upvote</button>
+					   		<span style={{marginRight: 10, float: 'right'}}>({posts[id].voteScore})</span>
+					   	</div>
 			    	</form>
-			    	<div>
-			    		<button className='submit-button' onClick ={() => postDownVotePost(id)} style={{backgroundColor: 'white'}}>submit</button>
-			    		<button className='vote-button' onClick ={() => postDownVotePost(id)} style={{backgroundColor: 'red'}}>downvote</button>
-				   		<button className='vote-button' onClick ={() => postUpVotePost(id)} style={{backgroundColor: 'green'}}>upvote</button>
-				   		<span style={{marginRight: 10, float: 'right'}}>({posts[id].voteScore})</span>
-			    	</div>
+
+
+			    		
+			    		
+
 			    </div> :
 	    	<Loading delay={200} type='spin' color='#222'/>
 	  )
