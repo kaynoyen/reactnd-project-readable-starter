@@ -9,17 +9,7 @@ function Comment ({ data }){
   const {body, author, timestamp, voteScore, id} = data
 
   return(
-    <div style={{
-      margin: 20,
-      padding: 10,
-      borderStyle: 'solid', 
-      borderRadius: 3, 
-      borderWidth: 1,
-      maxWidth: 500,
-      minWidth: 400,
-      borderColor: '#888888',
-      backgroundColor: '#f2f2f2',
-      }}>
+    <div className='comment-box'>
       <div>
         <p>{author}</p>
         <p>{body}</p>

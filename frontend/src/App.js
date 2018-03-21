@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchCategories, fetchPosts } from './actions'
-import { Route, Link} from 'react-router-dom'
+import { Route, Link, Switch} from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 import Navigation from './components/Navigation'
@@ -30,10 +30,13 @@ class App extends Component {
 
         </header>
         <div>
-          <Route exact path="/" component={Navigation}/>
-          <Route exact path="/:category?" component={ListPosts}/>
+          <Route path="/" component={Navigation}/>
+          <Switch>
+            <Route path="/:category/:id/edit" component={EditPost}/>
+            <Route path="/:category?" component={ListPosts}/>
+          </Switch>
           <Route exact path="/:category/:id" component={ListComments}/>
-          <Route path="/:category/:id/edit" exact component={EditPost}/>
+          
         </div>
       </div>
     );
