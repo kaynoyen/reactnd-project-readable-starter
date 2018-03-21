@@ -25,10 +25,14 @@ class EditPost extends Component {
 
 			    <div className='postBox'>
 			    	<form onSubmit={this.handleSubmit}>
-			    	<h3>Edit post by <span className='author'>{posts[id].author}</span></h3>
+			    	<h3>Edit post</h3>
 			    		<div>
 			    			<label className='edit-label'>Title: </label>
 			    			<input defaultValue={posts[id].title} name='title' className='text-input' type='text' placeholder='title' style={{verticalAlign: 'center'}}/>
+			    		</div>
+			    		<div>
+			    			<label className='edit-label'>Author: </label>
+			    			<input defaultValue={posts[id].author} name='author' className='text-input' type='text' placeholder='author' style={{verticalAlign: 'center'}}/>
 			    		</div>
 			    		<div>
 			    			<label className='edit-label'>Body: </label>

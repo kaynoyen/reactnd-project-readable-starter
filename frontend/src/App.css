@@ -70,6 +70,7 @@ button:hover {
 }
 
 .text-input {
+  font-size: 15px;
   width: 300px;
   margin: 3px;
   margin-left: 10px;
@@ -78,6 +79,7 @@ button:hover {
 }
 
 .textarea-input {
+  font-size: 15px;
   width: 300px;
   margin: 3px;
   margin-left: 10px;
@@ -93,4 +95,8 @@ button:hover {
   display: inline-block;
   width: 50px;
   text-align: right;
+}
+
+.author {
+  color: blue;
 }

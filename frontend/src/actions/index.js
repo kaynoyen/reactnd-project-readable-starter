@@ -142,6 +142,25 @@ export const updatePost = (id, json) => ({
 	json,
 })
 
+export function postUpdatePost(id,json) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'PUT',
+			body: JSON.stringify({
+                    title: json.title,
+                    body: json.body
+                }),
+		}).then((res) => dispatch(updatePost(id, json)))
+		
+	}
+}
+
 
 
 

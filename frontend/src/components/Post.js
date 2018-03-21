@@ -15,7 +15,7 @@ class Post extends Component {
 
 	      <Link to={`/${category}/${id}`}><h3>{title}</h3></Link>
 
-	      <h4>{author}</h4>
+	      <h4>by <span className='author'>{author}</span></h4>
 	      <p>{body}</p>
 
 	      <div>
