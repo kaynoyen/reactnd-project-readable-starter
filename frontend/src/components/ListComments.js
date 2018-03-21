@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import { fetchComments } from '../actions'
+import { fetchComments, postDownVoteComment, postUpVoteComment } from '../actions'
+import Loading from 'react-loading'
 
 function Comment ({ data }){
 
@@ -11,15 +12,15 @@ function Comment ({ data }){
   return(
     <div className='comment-box'>
       <div>
-        <p>{author}</p>
+        <p style={{fontWeight: 'bold'}}>Comment by <span className='author'>{author}</span></p>
         <p>{body}</p>
       </div>
 
       <div>
         <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/f`}>edit</Link>
         <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/g`}>delete</Link>
-        <Link style={{marginRight: 10, float: 'right', color: 'red', fontWeight: 'bold'}} to={'/T'}>downvote</Link>
-        <Link style={{marginRight: 10, float: 'right', color: 'green', fontWeight: 'bold'}} to={'/D'}>upvote</Link>
+        <button className='vote-button' onClick ={() => postDownVoteComment(id)} style={{backgroundColor: 'red'}}>downvote</button>
+        <button className='vote-button' onClick ={() => postUpVoteComment(id)} style={{backgroundColor: 'green'}}>upvote</button>
         <span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
       </div>
     </div>
@@ -37,17 +38,15 @@ class ListComments extends Component {
 
 	render(){
 
-		const { comments, match } = this.props
+		const { comments, loadingComments, match } = this.props
     const id = match.params.id
 
 	  return (
 
-	  	comments.isFetching ? 
-        <p> loading ...</p> : 
-        (comments[id] && comments[id].items.length > 0)
-         ? comments[id].items.map(comment => (
-          <Comment key={comment.id} data={comment}/>)):
-        <p>No comments</p>
+	  	loadingComments ? <Loading delay={200} type='spin' color='#222'/> : 
+        comments[id] ? Object.keys(comments[id].items).map( 
+          commentId => <Comment key={comments[id].items[commentId].id} data={comments[id].items[commentId]}/>) : 
+        <div>NIY{console.log('NANANA')}</div>
 
 	    )
 	}
@@ -56,12 +55,15 @@ class ListComments extends Component {
 function mapStateToProps ({comments}) {
   return {
     comments: comments,
+    loadingComments: comments.isFetching,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     fetchComments: (data) => dispatch(fetchComments(data)),
+    postDownVoteComment: (data) => dispatch(postDownVoteComment(data)),
+    postUpVoteComment: (data) => dispatch(postUpVoteComment(data))
   }
 }
 

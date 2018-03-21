@@ -12,7 +12,7 @@ class Post extends Component {
 	  const { postUpVotePost, postDownVotePost } = this.props
 
 	  return (
-	    <div className='postBox'>
+	    <div className='post-box'>
 
 	      <Link to={`/${category}/${id}`}><h3 className='post-title'>{title}</h3></Link>
 	      <Timestamp className='time-stamp' time={timestamp/1000} />

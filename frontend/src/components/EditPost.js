@@ -1,29 +1,38 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postUpVotePost, postDownVotePost, postUpdatePost} from '../actions'
-import { withRouter } from 'react-router'
+import { withRouter, Redirect } from 'react-router'
 import Loading from 'react-loading'
 import serializeForm from 'form-serialize'
 
 class EditPost extends Component {
 
+	state = {
+		redirect: false,
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault()
 		const values = serializeForm(e.target, {hash: true})
 		this.props.postUpdatePost(this.props.match.params.id, values)
+		this.setState({redirect: true})
 	}
+
+
 
 	render(){
 
-		const { id } = this.props.match.params
+		const { id, category } = this.props.match.params
 		const { posts } = this.props
 		const { postUpVotePost, postDownVotePost } = this.props
+		const { redirect} = this.state
 
 	  	return (
 
+	  		redirect ? <Redirect to={`/${category}/${id}`}/> :
 	  		Object.keys(posts).length > 0 ? 
 
-			    <div className='postBox'>
+			    <div className='post-box'>
 			    	<form onSubmit={this.handleSubmit}>
 			    	<h3>Edit post by <span className='author'>{posts[id].author}</span></h3>
 			    		<div>

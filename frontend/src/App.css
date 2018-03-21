@@ -59,30 +59,32 @@ button:hover {
   float: left;
 }
 
-.postBox {
+.post-box {
   margin: 20px;
-  padding: 10px;
+  margin-top:10px;
+  padding: 15px;
   border-style: solid;
   border-radius: 3px;
   border-width: 1px;
   border-color: #888888;
-  width: 400px;
+  width: 500px;
 }
 
 .comment-box {
   margin: 20px;
-  padding: 10px;
+  margin-top: 10px;
+  padding: 15px;
   border-style: solid;
   border-radius: 3px;
   border-width: 1px;
   border-color: #888888;
-  width: 400px;
+  width: 500px;
   background-color: #e9e9e9;
 }
 
 .text-input {
   font-size: 15px;
-  width: 300px;
+  width: 400px;
   margin: 3px;
   margin-left: 10px;
   padding: 10px;
@@ -91,7 +93,7 @@ button:hover {
 
 .textarea-input {
   font-size: 15px;
-  width: 300px;
+  width: 400px;
   margin: 3px;
   margin-left: 10px;
   padding: 10px;

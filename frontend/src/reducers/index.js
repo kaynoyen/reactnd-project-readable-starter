@@ -132,7 +132,11 @@ function comments (state = {
 				isFetching: false,
 				[action.id]: {
 					isFetching: false,
-	  				items: action.items,
+	  				items: action.items.reduce((all, one)=>(
+  					{...all,
+  						[one.id]: one,
+  						}
+  					),{}),
 	  				lastUpdated: action.receivedAt,
   				}
 			})
