@@ -100,7 +100,8 @@ function posts (state = {
 						...state.items,
 						[action.id]: {
 							...state.items[action.id],
-							...action.json
+							...action.json,
+							timestamp: action.timestamp,
 						}
 					}
 				}

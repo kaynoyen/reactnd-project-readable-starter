@@ -136,10 +136,11 @@ export function postDownVotePost(id) {
 
 export const UPDATE_POST = 'UPDATE_POST'
 
-export const updatePost = (id, json) => ({
+export const updatePost = (id, json, timestamp) => ({
 	type: UPDATE_POST,
 	id,
 	json,
+	timestamp,
 })
 
 export function postUpdatePost(id,json) {
@@ -154,9 +155,10 @@ export function postUpdatePost(id,json) {
 			method: 'PUT',
 			body: JSON.stringify({
                     title: json.title,
-                    body: json.body
+                    body: json.body,
+                    timestamp: Date.now(),
                 }),
-		}).then((res) => dispatch(updatePost(id, json)))
+		}).then((res) => dispatch(updatePost(id, json, Date.now())))
 		
 	}
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { postUpVotePost, postDownVotePost} from '../actions'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import Timestamp from 'react-timestamp'
 
 class Post extends Component {
 
@@ -13,7 +14,8 @@ class Post extends Component {
 	  return (
 	    <div className='postBox'>
 
-	      <Link to={`/${category}/${id}`}><h3>{title}</h3></Link>
+	      <Link to={`/${category}/${id}`}><h3 className='post-title'>{title}</h3></Link>
+	      <Timestamp className='time-stamp' time={timestamp/1000} />
 
 	      <h4>by <span className='author'>{author}</span></h4>
 	      <p>{body}</p>

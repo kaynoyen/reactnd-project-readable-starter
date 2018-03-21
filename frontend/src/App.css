@@ -100,3 +100,12 @@ button:hover {
 .author {
   color: blue;
 }
+
+.time-stamp {
+  color: grey;
+  font-size: 14px;
+}
+
+.post-title {
+  margin-bottom: 5px;
+}
