@@ -7,6 +7,7 @@ import {
 	REQUEST_COMMENTS,
 	UPVOTE_POST,
 	DOWNVOTE_POST,
+	UPDATE_POST,
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -87,6 +88,19 @@ function posts (state = {
 						[action.id]: {
 							...state.items[action.id],
 							voteScore: state.items[action.id].voteScore - 1
+						}
+					}
+				}
+
+		case UPDATE_POST :
+
+			return {
+				...state,
+					items: {
+						...state.items,
+						[action.id]: {
+							...state.items[action.id],
+							...action.json
 						}
 					}
 				}

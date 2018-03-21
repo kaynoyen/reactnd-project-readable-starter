@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import Post from './Post'
 import Loading from 'react-loading'

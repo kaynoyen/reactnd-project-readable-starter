@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchCategories, fetchPosts } from './actions'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link} from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 import Navigation from './components/Navigation'
@@ -20,8 +20,6 @@ class App extends Component {
   }
 
   render() {
-
-    const { categories, posts } = this.props
 
     return (
       <div>

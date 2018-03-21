@@ -132,9 +132,15 @@ export function postDownVotePost(id) {
 	}
 }
 
+// EDIT POSTS
 
+export const UPDATE_POST = 'UPDATE_POST'
 
-
+export const updatePost = (id, json) => ({
+	type: UPDATE_POST,
+	id,
+	json,
+})
 
 
 
