@@ -9,6 +9,7 @@ import Navigation from './components/Navigation'
 import ListPosts from './components/ListPosts'
 import ListComments from './components/ListComments'
 import EditPost from './components/EditPost'
+import EditComment from './components/EditComment'
 
 class App extends Component {
 
@@ -32,6 +33,7 @@ class App extends Component {
         <div>
           <Route path="/" component={Navigation}/>
           <Switch>
+            <Route path="/:category/:pid/:id/edit" component={EditComment}/>
             <Route path="/:category/:id/edit" component={EditPost}/>
             <Route path="/:category?" component={ListPosts}/>
           </Switch>

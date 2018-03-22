@@ -6,7 +6,7 @@ import { fetchComments, postDownVoteComment, postUpVoteComment } from '../action
 import Loading from 'react-loading'
 import Timestamp from 'react-timestamp'
 
-function Comment ({ data, postDownVoteComment, postUpVoteComment }){
+function Comment ({ data, postDownVoteComment, postUpVoteComment, category }){
 
   const {body, author, timestamp, voteScore, id, parentId} = data
 
@@ -15,10 +15,11 @@ function Comment ({ data, postDownVoteComment, postUpVoteComment }){
       <div>
         <h3 className='post-title'>Comment by <span className='author'>{author}</span></h3>
         <Timestamp className='time-stamp' time={timestamp/1000} />
-        <p>{body}</p>
+        <p style={{marginTop: 5, marginBottom: 5, fontSize: 14}}>{body}</p>
       </div>
       <div>
-        <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/f`}>edit</Link>
+
+        <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${parentId}/${id}/edit`}>edit</Link>
         <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/g`}>delete</Link>
         <button className='vote-button' onClick ={() => postDownVoteComment(id, parentId)} style={{backgroundColor: 'red'}}>downvote</button>
         <button className='vote-button' onClick ={() => postUpVoteComment(id, parentId)} style={{backgroundColor: 'green'}}>upvote</button>
@@ -51,6 +52,7 @@ class ListComments extends Component {
             data={comments[id].items[commentId]}
             postUpVoteComment={postUpVoteComment}
             postDownVoteComment={postDownVoteComment}
+            category={match.params.category}
             />) : 
         <div>No comments</div>
 
