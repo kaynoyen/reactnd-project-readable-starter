@@ -137,19 +137,21 @@ export function postDownVotePost(id) {
 export const UPVOTE_COMMENT = "UPVOTE_COMMENT"
 export const DOWNVOTE_COMMENT = "DOWNVOTE_COMMENT"
 
-export const upVoteComment = (id) => ({
+export const upVoteComment = (id, pid) => ({
 	type: UPVOTE_COMMENT,
 	id,
+	pid,
 })
 
-export const downVoteComment = (id) => ({
+export const downVoteComment = (id, pid) => ({
 	type: DOWNVOTE_COMMENT,
 	id,
+	pid,
 })
 
-export function postUpVoteComment(id) {
+export function postUpVoteComment(id, pid) {
 	return dispatch => {
-		const url = `${process.env.REACT_APP_BACKEND}/comments/${id}/`
+		const url = `${process.env.REACT_APP_BACKEND}/comments/${id}`
 		return fetch(url, { 
 			headers: { 'Authorization': 'whatever-you-want',
 			'Accept': 'application/json',
@@ -158,16 +160,16 @@ export function postUpVoteComment(id) {
 			credentials: 'include',
 			method: 'POST',
 			body: JSON.stringify({
-                    option: 'upVote'
-                }),
-		}).then((res) => dispatch(upVoteComment(id)))
+				option: 'upVote'
+				}),
+		}).then((res) => dispatch(upVoteComment(id, pid)))
 		
 	}
 }
 
-export function postDownVoteComment(id) {
+export function postDownVoteComment(id, pid) {
 	return dispatch => {
-		const url = `${process.env.REACT_APP_BACKEND}/comment/${id}/`
+		const url = `${process.env.REACT_APP_BACKEND}/comments/${id}`
 		return fetch(url, { 
 			headers: { 'Authorization': 'whatever-you-want',
 			'Accept': 'application/json',
@@ -178,7 +180,7 @@ export function postDownVoteComment(id) {
 			body: JSON.stringify({
                     option: 'downVote'
                 }),
-		}).then((res) => dispatch(downVoteComment(id)))
+		}).then((res) => dispatch(downVoteComment(id, pid)))
 		
 	}
 }

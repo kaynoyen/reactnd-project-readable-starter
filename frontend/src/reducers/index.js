@@ -8,6 +8,8 @@ import {
 	UPVOTE_POST,
 	DOWNVOTE_POST,
 	UPDATE_POST,
+	UPVOTE_COMMENT,
+	DOWNVOTE_COMMENT
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -140,6 +142,38 @@ function comments (state = {
 	  				lastUpdated: action.receivedAt,
   				}
 			})
+
+		case UPVOTE_COMMENT :
+
+			return {
+				...state,
+				[action.pid]: {
+					...state[action.pid],
+					items: {
+						...state[action.pid].items,
+						[action.id]: {
+							...state[action.pid].items[action.id],
+							voteScore: state[action.pid].items[action.id].voteScore + 1,
+						}
+					}
+				}
+			}
+
+		case DOWNVOTE_COMMENT :
+
+			return {
+				...state,
+				[action.pid]: {
+					...state[action.pid],
+					items: {
+						...state[action.pid].items,
+						[action.id]: {
+							...state[action.pid].items[action.id],
+							voteScore: state[action.pid].items[action.id].voteScore - 1,
+						}
+					}
+				}
+			}
 
 		default :
 			return state
