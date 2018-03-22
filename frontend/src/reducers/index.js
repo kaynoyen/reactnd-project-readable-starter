@@ -10,7 +10,8 @@ import {
 	UPDATE_POST,
 	UPVOTE_COMMENT,
 	DOWNVOTE_COMMENT,
-	UPDATE_COMMENT
+	UPDATE_COMMENT,
+	CREATE_POST
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -50,6 +51,16 @@ function posts (state = {
 		action
 	) {
 	switch (action.type) {
+
+		case CREATE_POST :
+
+			return {
+				...state,
+				items: {
+					...state.items,
+					[action.json.id]: action.json
+				}
+			}
 
 		case REQUEST_POSTS :
 

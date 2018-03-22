@@ -196,7 +196,7 @@ export const updatePost = (pid, json, timestamp) => ({
 	timestamp,
 })
 
-export function postUpdatePost(pid,json) {
+export function postUpdatePost(pid, json) {
 	return dispatch => {
 		const url = `${process.env.REACT_APP_BACKEND}/posts/${pid}/`
 		return fetch(url, { 
@@ -246,6 +246,42 @@ export function postUpdateComment(cid, pid, json) {
 		
 	}
 }
+
+// CREATE POST
+
+export const CREATE_POST = 'CREATE_POST'
+
+export const createPost = (json) => ({
+	type: CREATE_POST,
+	json,
+})
+
+export function postCreatePost(json) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/posts/`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'POST',
+			body: JSON.stringify(json),
+		}).then((res) => dispatch(createPost(json)))
+		
+	}
+}
+
+/*
+id 
+timestamp 
+title 
+body
+author
+category 
+*/
+
+
 
 
 

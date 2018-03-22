@@ -10,6 +10,7 @@ import ListPosts from './components/ListPosts'
 import ListComments from './components/ListComments'
 import EditPost from './components/EditPost'
 import EditComment from './components/EditComment'
+import NewPost from './components/NewPost'
 
 class App extends Component {
 
@@ -27,11 +28,12 @@ class App extends Component {
 
         <header className="App-header">
           <h1 className="App-title"><Link style={{color: 'white', textDecoration: 'none'}} to="/">Readable</Link></h1>
-          <button className='post-button'>new post</button>        
+          <Link to="/new"><button className='post-button'>new post</button></Link>      
 
         </header>
         <div>
           <Route path="/" component={Navigation}/>
+          <Route exact path="/new" component={NewPost}/>
           <Switch>
             <Route path="/:category/:pid/:cid/edit" component={EditComment}/>
             <Route path="/:category/:pid/edit" component={EditPost}/>

@@ -45,8 +45,8 @@ h4 {
 
 .submit-button {
   border: 1px solid;
+  border-radius: 5px;
   box-shadow: none;
-  border-radius: 0px;
   color: black;
   font-size: 14px;
   margin-right: 5px;
@@ -60,7 +60,7 @@ h4 {
   border-radius: 0px;
   color: white;
   font-size: 14px;
-  margin-left: 190px;
+  margin-left: 280px;
   margin-top: 18px;
   background-color: black;
   font-weight: bold;
@@ -94,7 +94,7 @@ h4 {
 
 .text-input {
   font-size: 15px;
-  width: 400px;
+  width: 350px;
   margin: 3px;
   margin-left: 10px;
   padding: 10px;
@@ -103,7 +103,7 @@ h4 {
 
 .textarea-input {
   font-size: 15px;
-  width: 400px;
+  width: 350px;
   margin: 3px;
   margin-left: 10px;
   padding: 10px;
@@ -114,11 +114,22 @@ h4 {
   vertical-align: middle;
 }
 
+.select-input {
+  width: 375px;
+  margin: 3px;
+  margin-left: 10px;
+  height: 40px;
+  padding: 10px;
+  font-size: 15px;
+}
+
 .edit-label {
   display: inline-block;
-  width: 50px;
+  width: 70px;
   text-align: right;
 }
+
+
 
 .author {
   color: blue;
