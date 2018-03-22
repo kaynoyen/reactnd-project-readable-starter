@@ -9,7 +9,8 @@ import {
 	DOWNVOTE_POST,
 	UPDATE_POST,
 	UPVOTE_COMMENT,
-	DOWNVOTE_COMMENT
+	DOWNVOTE_COMMENT,
+	UPDATE_COMMENT
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -74,9 +75,9 @@ function posts (state = {
 				...state,
 					items: {
 						...state.items,
-						[action.id]: {
-							...state.items[action.id],
-							voteScore: state.items[action.id].voteScore + 1
+						[action.pid]: {
+							...state.items[action.pid],
+							voteScore: state.items[action.pid].voteScore + 1
 						}
 					}
 				}
@@ -87,9 +88,9 @@ function posts (state = {
 				...state,
 					items: {
 						...state.items,
-						[action.id]: {
-							...state.items[action.id],
-							voteScore: state.items[action.id].voteScore - 1
+						[action.pid]: {
+							...state.items[action.pid],
+							voteScore: state.items[action.pid].voteScore - 1
 						}
 					}
 				}
@@ -100,8 +101,8 @@ function posts (state = {
 				...state,
 					items: {
 						...state.items,
-						[action.id]: {
-							...state.items[action.id],
+						[action.pid]: {
+							...state.items[action.pid],
 							...action.json,
 							timestamp: action.timestamp,
 						}
@@ -123,7 +124,7 @@ function comments (state = {
 		case REQUEST_COMMENTS :
 			return Object.assign({}, state, {
 				isFetching: true,
-				[action.id]: {
+				[action.pid]: {
 					isFetching: true,
 				}
 			})
@@ -132,9 +133,9 @@ function comments (state = {
 
 			return Object.assign({}, state, {
 				isFetching: false,
-				[action.id]: {
+				[action.pid]: {
 					isFetching: false,
-	  				items: action.items.reduce((all, one)=>(
+	  				items: action.json.reduce((all, one)=>(
   					{...all,
   						[one.id]: one,
   						}
@@ -151,9 +152,9 @@ function comments (state = {
 					...state[action.pid],
 					items: {
 						...state[action.pid].items,
-						[action.id]: {
-							...state[action.pid].items[action.id],
-							voteScore: state[action.pid].items[action.id].voteScore + 1,
+						[action.cid]: {
+							...state[action.pid].items[action.cid],
+							voteScore: state[action.pid].items[action.cid].voteScore + 1,
 						}
 					}
 				}
@@ -167,13 +168,30 @@ function comments (state = {
 					...state[action.pid],
 					items: {
 						...state[action.pid].items,
-						[action.id]: {
-							...state[action.pid].items[action.id],
-							voteScore: state[action.pid].items[action.id].voteScore - 1,
+						[action.cid]: {
+							...state[action.pid].items[action.cid],
+							voteScore: state[action.pid].items[action.cid].voteScore - 1,
 						}
 					}
 				}
 			}
+
+		case UPDATE_COMMENT :
+
+			return {
+					...state,
+					[action.pid]: {
+						...state[action.pid],
+						items: {
+							...state[action.pid].items,
+							[action.cid]: {
+								...state[action.pid].items[action.cid],
+								...action.json,
+								timestamp: action.timestamp
+							}
+						}
+					}
+				}
 
 		default :
 			return state

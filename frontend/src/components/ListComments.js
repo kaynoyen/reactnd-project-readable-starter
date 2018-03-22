@@ -10,6 +10,9 @@ function Comment ({ data, postDownVoteComment, postUpVoteComment, category }){
 
   const {body, author, timestamp, voteScore, id, parentId} = data
 
+  const cid = id
+  const pid = parentId
+
   return(
     <div className='comment-box'>
       <div>
@@ -19,10 +22,10 @@ function Comment ({ data, postDownVoteComment, postUpVoteComment, category }){
       </div>
       <div>
 
-        <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${parentId}/${id}/edit`}>edit</Link>
+        <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/${cid}/edit`}>edit</Link>
         <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/g`}>delete</Link>
-        <button className='vote-button' onClick ={() => postDownVoteComment(id, parentId)} style={{backgroundColor: 'red'}}>downvote</button>
-        <button className='vote-button' onClick ={() => postUpVoteComment(id, parentId)} style={{backgroundColor: 'green'}}>upvote</button>
+        <button className='vote-button' onClick ={() => postDownVoteComment(cid, pid)} style={{backgroundColor: 'red'}}>downvote</button>
+        <button className='vote-button' onClick ={() => postUpVoteComment(cid, pid)} style={{backgroundColor: 'green'}}>upvote</button>
         <span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
       </div>
     </div>
@@ -34,22 +37,22 @@ class ListComments extends Component {
   componentDidMount() {
 
     const { fetchComments, match } = this.props
-    fetchComments(match.params.id)
+    fetchComments(match.params.pid)
 
   }
 
 	render(){
 
 		const { comments, loadingComments, match, postUpVoteComment, postDownVoteComment } = this.props
-    const id = match.params.id
+    const pid = match.params.pid
 
 	  return (
 
 	  	loadingComments ? <Loading delay={200} type='spin' color='#222'/> : 
-        comments[id] ? Object.keys(comments[id].items).map( 
-          commentId => <Comment 
-            key={comments[id].items[commentId].id} 
-            data={comments[id].items[commentId]}
+        comments[pid] ? Object.keys(comments[pid].items).map( 
+          comment => <Comment 
+            key={comments[pid].items[comment].id} 
+            data={comments[pid].items[comment]}
             postUpVoteComment={postUpVoteComment}
             postDownVoteComment={postDownVoteComment}
             category={match.params.category}
@@ -69,9 +72,9 @@ function mapStateToProps ({comments}) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchComments: (data) => dispatch(fetchComments(data)),
-    postDownVoteComment: (id, pid) => dispatch(postDownVoteComment(id, pid)),
-    postUpVoteComment: (id, pid) => dispatch(postUpVoteComment(id, pid))
+    fetchComments: (pid) => dispatch(fetchComments(pid)),
+    postDownVoteComment: (cid, pid) => dispatch(postDownVoteComment(cid, pid)),
+    postUpVoteComment: (cid, pid) => dispatch(postUpVoteComment(cid, pid))
   }
 }
 

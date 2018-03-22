@@ -19,8 +19,8 @@ class ListPosts extends Component {
 	  		{loadingPosts ? 
 	  			<Loading delay={200} type='spin' color='#222'/> :
 	  			category ?
-	  				posts.filter(post => post.category === category).map(post => <Post key={post.id} content={post}/>)	:
-	  			posts.map(post => (<Post key={post.id} content={post}/>))
+	  				posts.filter(post => post.category === category).map(post => <Post key={post.id} data={post}/>)	:
+	  			posts.map(post => (<Post key={post.id} data={post}/>))
 	  		}
 
 	  	</div>

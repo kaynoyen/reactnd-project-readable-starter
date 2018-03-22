@@ -33,11 +33,11 @@ class App extends Component {
         <div>
           <Route path="/" component={Navigation}/>
           <Switch>
-            <Route path="/:category/:pid/:id/edit" component={EditComment}/>
-            <Route path="/:category/:id/edit" component={EditPost}/>
+            <Route path="/:category/:pid/:cid/edit" component={EditComment}/>
+            <Route path="/:category/:pid/edit" component={EditPost}/>
             <Route path="/:category?" component={ListPosts}/>
           </Switch>
-          <Route exact path="/:category/:id" component={ListComments}/>
+          <Route exact path="/:category/:pid" component={ListComments}/>
           
         </div>
       </div>

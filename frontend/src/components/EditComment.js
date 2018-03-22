@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postUpdatePost, postDownVoteComment, postUpVoteComment} from '../actions'
+import { postUpdateComment, postDownVoteComment, postUpVoteComment} from '../actions'
 import { withRouter, Redirect } from 'react-router'
 import Loading from 'react-loading'
 import serializeForm from 'form-serialize'
@@ -14,35 +14,33 @@ class EditComment extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		const values = serializeForm(e.target, {hash: true})
-		this.props.postUpdatePost(this.props.match.params.id, values)
+		this.props.postUpdateComment(this.props.match.params.cid, this.props.match.params.pid, values)
 		this.setState({redirect: true})
 	}
 
 
 
 	render(){
-		const { id, pid, category } = this.props.match.params
-		const { comments, postUpVoteComment, postDownVoteComment } = this.props
+		const { cid, pid, category } = this.props.match.params
+		const { comments, postUpVoteComment, postDownVoteComment, postUpdateComment} = this.props
 		const { redirect} = this.state
 		console.log(redirect)
 	  	return (
-
-
 
 	  		redirect ? <Redirect to={`/${category}/${pid}`}/> :
 	  			comments[pid] ? 
 				    <div className='post-box'>
 				    	<form onSubmit={this.handleSubmit}>
 				    	{console.log(comments)}
-				    	<h3>Edit comment by <span className='author'>{comments[pid].items[id].author}</span></h3>
+				    	<h3>Edit comment by <span className='author'>{comments[pid].items[cid].author}</span></h3>
 				    		<div>
-				    			<textarea className='textarea-input' name='body' defaultValue={comments[pid].items[id].body} type='text' placeholder='body'/>
+				    			<textarea className='textarea-input' name='body' defaultValue={comments[pid].items[cid].body} type='text' placeholder='body'/>
 				    		</div>
 				    		<div style={{marginTop: 10}}>
 					    		<button className='submit-button' style={{backgroundColor: 'white'}}>submit</button>
-					    		<button type='button' className='vote-button' onClick ={() => postDownVoteComment(id, pid)} style={{backgroundColor: 'red'}}>downvote</button>
-						   		<button type='button' className='vote-button' onClick ={() => postUpVoteComment(id, pid)} style={{backgroundColor: 'green'}}>upvote</button>
-						   		<span style={{marginRight: 10, float: 'right'}}>({comments[pid].items[id].voteScore})</span>
+					    		<button type='button' className='vote-button' onClick ={() => postDownVoteComment(cid, pid)} style={{backgroundColor: 'red'}}>downvote</button>
+						   		<button type='button' className='vote-button' onClick ={() => postUpVoteComment(cid, pid)} style={{backgroundColor: 'green'}}>upvote</button>
+						   		<span style={{marginRight: 10, float: 'right'}}>({comments[pid].items[cid].voteScore})</span>
 						   	</div>
 				    	</form>
 				    </div> :
@@ -60,9 +58,9 @@ function mapStateToProps ({comments}) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    postUpVoteComment: (id, pid) => dispatch(postUpVoteComment(id, pid)),
-    postDownVoteComment: (id, pid) => dispatch(postDownVoteComment(id, pid)),
-    postUpdatePost: (id, json) => dispatch(postUpdatePost(id, json)),
+    postUpVoteComment: (cid, pid) => dispatch(postUpVoteComment(cid, pid)),
+    postDownVoteComment: (cid, pid) => dispatch(postDownVoteComment(cid, pid)),
+    postUpdateComment: (cid, pid, json) => dispatch(postUpdateComment(cid, pid, json)),
   }
 }
 

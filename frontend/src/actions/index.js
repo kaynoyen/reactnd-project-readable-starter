@@ -58,26 +58,26 @@ export const REQUEST_COMMENTS = "REQUEST_COMMENTS"
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS"
 export const FETCH_COMMENTS = "FETCH_COMMENTS"
 
-export const requestComments = (id) => ({
+export const requestComments = (pid) => ({
 	type: REQUEST_COMMENTS,
-	id,
+	pid,
 })
 
-export const receiveComments = (id, json) => ({
+export const receiveComments = (pid, json) => ({
   type: RECEIVE_COMMENTS,
-  items: json,
+  json,
   receivedAt: Date.now(),
-  id
+  pid
 })
 
-export function fetchComments(id) {
+export function fetchComments(pid) {
 	return dispatch => {
-		dispatch(requestComments(id))
-		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/comments`
+		dispatch(requestComments(pid))
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${pid}/comments`
 		return fetch(url, { headers: { 'Authorization': 'whatever-you-want' },
                  credentials: 'include' } )
       		.then( (res) => { return(res.json())})
-      		.then((data) => dispatch(receiveComments(id, data)))
+      		.then((data) => dispatch(receiveComments(pid, data)))
 	}
 }
 
@@ -86,19 +86,19 @@ export function fetchComments(id) {
 export const UPVOTE_POST = "UPVOTE_POST"
 export const DOWNVOTE_POST = "DOWNVOTE_POST"
 
-export const upVotePost = (id) => ({
+export const upVotePost = (pid) => ({
 	type: UPVOTE_POST,
-	id,
+	pid,
 })
 
-export const downVotePost = (id) => ({
+export const downVotePost = (pid) => ({
 	type: DOWNVOTE_POST,
-	id,
+	pid,
 })
 
-export function postUpVotePost(id) {
+export function postUpVotePost(pid) {
 	return dispatch => {
-		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/`
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${pid}/`
 		return fetch(url, { 
 			headers: { 'Authorization': 'whatever-you-want',
 			'Accept': 'application/json',
@@ -109,14 +109,14 @@ export function postUpVotePost(id) {
 			body: JSON.stringify({
                     option: 'upVote'
                 }),
-		}).then((res) => dispatch(upVotePost(id)))
+		}).then((res) => dispatch(upVotePost(pid)))
 		
 	}
 }
 
-export function postDownVotePost(id) {
+export function postDownVotePost(pid) {
 	return dispatch => {
-		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/`
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${pid}/`
 		return fetch(url, { 
 			headers: { 'Authorization': 'whatever-you-want',
 			'Accept': 'application/json',
@@ -127,7 +127,7 @@ export function postDownVotePost(id) {
 			body: JSON.stringify({
                     option: 'downVote'
                 }),
-		}).then((res) => dispatch(downVotePost(id)))
+		}).then((res) => dispatch(downVotePost(pid)))
 		
 	}
 }
@@ -137,21 +137,21 @@ export function postDownVotePost(id) {
 export const UPVOTE_COMMENT = "UPVOTE_COMMENT"
 export const DOWNVOTE_COMMENT = "DOWNVOTE_COMMENT"
 
-export const upVoteComment = (id, pid) => ({
+export const upVoteComment = (cid, pid) => ({
 	type: UPVOTE_COMMENT,
-	id,
+	cid,
 	pid,
 })
 
-export const downVoteComment = (id, pid) => ({
+export const downVoteComment = (cid, pid) => ({
 	type: DOWNVOTE_COMMENT,
-	id,
+	cid,
 	pid,
 })
 
-export function postUpVoteComment(id, pid) {
+export function postUpVoteComment(cid, pid) {
 	return dispatch => {
-		const url = `${process.env.REACT_APP_BACKEND}/comments/${id}`
+		const url = `${process.env.REACT_APP_BACKEND}/comments/${cid}`
 		return fetch(url, { 
 			headers: { 'Authorization': 'whatever-you-want',
 			'Accept': 'application/json',
@@ -162,14 +162,14 @@ export function postUpVoteComment(id, pid) {
 			body: JSON.stringify({
 				option: 'upVote'
 				}),
-		}).then((res) => dispatch(upVoteComment(id, pid)))
+		}).then((res) => dispatch(upVoteComment(cid, pid)))
 		
 	}
 }
 
-export function postDownVoteComment(id, pid) {
+export function postDownVoteComment(cid, pid) {
 	return dispatch => {
-		const url = `${process.env.REACT_APP_BACKEND}/comments/${id}`
+		const url = `${process.env.REACT_APP_BACKEND}/comments/${cid}`
 		return fetch(url, { 
 			headers: { 'Authorization': 'whatever-you-want',
 			'Accept': 'application/json',
@@ -180,7 +180,7 @@ export function postDownVoteComment(id, pid) {
 			body: JSON.stringify({
                     option: 'downVote'
                 }),
-		}).then((res) => dispatch(downVoteComment(id, pid)))
+		}).then((res) => dispatch(downVoteComment(cid, pid)))
 		
 	}
 }
@@ -189,16 +189,16 @@ export function postDownVoteComment(id, pid) {
 
 export const UPDATE_POST = 'UPDATE_POST'
 
-export const updatePost = (id, json, timestamp) => ({
+export const updatePost = (pid, json, timestamp) => ({
 	type: UPDATE_POST,
-	id,
+	pid,
 	json,
 	timestamp,
 })
 
-export function postUpdatePost(id,json) {
+export function postUpdatePost(pid,json) {
 	return dispatch => {
-		const url = `${process.env.REACT_APP_BACKEND}/posts/${id}/`
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${pid}/`
 		return fetch(url, { 
 			headers: { 'Authorization': 'whatever-you-want',
 			'Accept': 'application/json',
@@ -211,7 +211,38 @@ export function postUpdatePost(id,json) {
                     body: json.body,
                     timestamp: Date.now(),
                 }),
-		}).then((res) => dispatch(updatePost(id, json, Date.now())))
+		}).then((res) => dispatch(updatePost(pid, json, Date.now())))
+		
+	}
+}
+
+// EDIT COMMENTS
+
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+
+export const updateComment = (cid, pid, json, timestamp) => ({
+	type: UPDATE_COMMENT,
+	cid,
+	pid,
+	json,
+	timestamp,
+})
+
+export function postUpdateComment(cid, pid, json) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/comments/${cid}/`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'PUT',
+			body: JSON.stringify({
+                    body: json.body,
+                    timestamp: Date.now(),
+                }),
+		}).then((res) => dispatch(updateComment(cid, pid, json, Date.now())))
 		
 	}
 }
