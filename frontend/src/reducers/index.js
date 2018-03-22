@@ -187,7 +187,7 @@ function comments (state = {
 							[action.cid]: {
 								...state[action.pid].items[action.cid],
 								...action.json,
-								timestamp: action.timestamp
+								timestamp: action.timestamp,
 							}
 						}
 					}

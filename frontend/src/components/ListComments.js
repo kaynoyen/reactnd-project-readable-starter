@@ -36,8 +36,8 @@ class ListComments extends Component {
 
   componentDidMount() {
 
-    const { fetchComments, match } = this.props
-    fetchComments(match.params.pid)
+    const { fetchComments, match, comments } = this.props
+    Object.keys(comments).length < 2 ? fetchComments(match.params.pid) : null
 
   }
 

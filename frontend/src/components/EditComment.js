@@ -31,7 +31,6 @@ class EditComment extends Component {
 	  			comments[pid] ? 
 				    <div className='post-box'>
 				    	<form onSubmit={this.handleSubmit}>
-				    	{console.log(comments)}
 				    	<h3>Edit comment by <span className='author'>{comments[pid].items[cid].author}</span></h3>
 				    		<div>
 				    			<textarea className='textarea-input' name='body' defaultValue={comments[pid].items[cid].body} type='text' placeholder='body'/>
