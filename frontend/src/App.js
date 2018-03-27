@@ -11,6 +11,7 @@ import ListComments from './components/ListComments'
 import EditPost from './components/EditPost'
 import EditComment from './components/EditComment'
 import NewPost from './components/NewPost'
+import NewComment from './components/NewComment'
 
 class App extends Component {
 
@@ -33,13 +34,17 @@ class App extends Component {
         </header>
         <div>
           <Route path="/" component={Navigation}/>
-          <Route exact path="/new" component={NewPost}/>
+          <Route path="/new" component={NewPost}/>
+          
+          
           <Switch>
             <Route path="/:category/:pid/:cid/edit" component={EditComment}/>
             <Route path="/:category/:pid/edit" component={EditPost}/>
             <Route path="/:category?/:pid?" component={ListPosts}/>
+
           </Switch>
           <Route exact path="/:category/:pid" component={ListComments}/>
+          <Route path="/:category/:pid/new" component={NewComment}/>
           
         </div>
       </div>

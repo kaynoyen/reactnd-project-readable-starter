@@ -15,31 +15,25 @@ class Post extends Component {
 
 	  return (
 	    <div className='post-box'>
-
 	    	<div>
-	      		<Link to={`/${category}/${pid}`}><h3 className='post-title'>{title}</h3></Link>
-	      		
+	      		<Link to={`/${category}/${pid}`}><h3 className='post-title'>{title}</h3></Link>	
 	      	</div>
 
 	      	<div>
 		      <Timestamp className='time-stamp' time={timestamp/1000} />
 		    </div>
 
-		      <h4>by <span className='author'>{author}</span></h4>
-		      <p>{body}</p>
+		 	<h4>by <span className='author'>{author}</span></h4>
+		   	<p>{body}</p>
 
-		      <div>
-			      
-			      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/delete`}>comment ({commentCount})</Link>
-
-			      <Link to={`/${category}/${pid}/edit`}> <button className='edit-button' >edit</button></Link>
+		   	<div>
+				<Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/new/`}>comment ({commentCount})</Link>
+			    <Link to={`/${category}/${pid}/edit`}> <button className='edit-button' >edit</button></Link>
 		      	<button className='delete-button' onClick={() => postDeletePost(pid)}>delete</button>
-
-			      <button className='vote-button' onClick ={() => postDownVotePost(pid)} style={{backgroundColor: 'red'}}>downvote</button>
-			      <button className='vote-button' onClick ={() => postUpVotePost(pid)} style={{backgroundColor: 'green'}}>upvote</button>
-			      <span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
-		      </div>
-	      
+			   	<button className='vote-button' onClick ={() => postDownVotePost(pid)} style={{backgroundColor: 'red'}}>downvote</button>
+			   	<button className='vote-button' onClick ={() => postUpVotePost(pid)} style={{backgroundColor: 'green'}}>upvote</button>
+			  	<span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
+		  	</div>
 	    </div>
 	  )
 	}

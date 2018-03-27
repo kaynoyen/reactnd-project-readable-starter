@@ -12,7 +12,9 @@ import {
 	DOWNVOTE_COMMENT,
 	UPDATE_COMMENT,
 	CREATE_POST,
-	DELETE_POST
+	DELETE_POST,
+	CREATE_COMMENT,
+	DELETE_COMMENT
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -127,12 +129,40 @@ function posts (state = {
 				...state,
 					items: {
 						...Object.keys(state.items).filter(item => 
-							item != action.pid).reduce((all, one) => 
+							item !== action.pid).reduce((all, one) => 
 							({...all,
 								[one]: state.items[one],
 							}),{})
 					}
 
+			}
+
+		case CREATE_COMMENT:
+
+			return {
+				...state,
+					items: {
+						...state.items,
+						[action.pid]: {
+							...state.items[action.pid],
+							commentCount: state.items[action.pid].commentCount + 1
+						}
+
+					}
+			}
+
+			case DELETE_COMMENT:
+
+			return {
+				...state,
+					items: {
+						...state.items,
+						[action.pid]: {
+							...state.items[action.pid],
+							commentCount: state.items[action.pid].commentCount - 1
+						}
+
+					}
 			}
 
 		default :
@@ -219,9 +249,55 @@ function comments (state = {
 					}
 				}
 
+		case CREATE_COMMENT :
+
+			return {
+				...state,
+				[action.pid]: action.pid in state ? {
+					...state[action.pid],
+					items: {
+						...state[action.pid].items,
+						[action.json.id]: {
+							...action.json,
+						}
+					}
+				} : {
+					items: {
+						[action.json.id]: {
+							...action.json,
+						}
+					}
+				}
+			}
+
+		case DELETE_COMMENT :
+
+			return {
+
+				...state,
+				[action.pid]: {
+					...state[action.pid],
+					items: {
+						...Object.keys(state[action.pid].items).filter(item => 
+							item !== action.cid).reduce( (all, one) => (
+								{
+									...all,
+									[one]: {
+										...state[action.pid].items[one]
+									}
+								}),{})
+
+					}
+				}
+				
+		
+			}
+
 		default :
 			return state
 	}
+
+
 }
 
 export default combineReducers({

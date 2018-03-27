@@ -296,8 +296,56 @@ export function postDeletePost(pid) {
 	}
 }
 
+// DELETE COMMENTS
 
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
+export const deleteComment = (cid, pid) => ({
+	type: DELETE_COMMENT,
+	cid,
+	pid,
+})
+
+export function postDeleteComment(cid, pid) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/comments/${cid}`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'DELETE',
+		}).then((res) => dispatch(deleteComment(cid, pid)))
+		
+	}
+}
+
+// CREATE POST
+
+export const CREATE_COMMENT = 'CREATE_COMMENT'
+
+export const createComment = (pid, json) => ({
+	type: CREATE_COMMENT,
+	pid,
+	json,
+})
+
+export function postCreateComment(pid, json) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/comments/`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'POST',
+			body: JSON.stringify(json),
+		}).then((res) => dispatch(createComment(pid, json)))
+		
+	}
+}
 
 
 

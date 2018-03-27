@@ -24,7 +24,7 @@ class EditComment extends Component {
 		const { cid, pid, category } = this.props.match.params
 		const { comments, postUpVoteComment, postDownVoteComment, postUpdateComment} = this.props
 		const { redirect} = this.state
-		console.log(redirect)
+
 	  	return (
 
 	  		redirect ? <Redirect to={`/${category}/${pid}`}/> :
