@@ -9,17 +9,23 @@ class ListPosts extends Component {
 
 	render(){
 
-		const { posts, loadingPosts, match } = this.props
-		const category = match.params.category
+		const { posts, loadingPosts } = this.props
+		const { category, pid } = this.props.match.params
 
 	  return (
+
 
 	  	<div>
 
 	  		{loadingPosts ? 
 	  			<Loading delay={200} type='spin' color='#222'/> :
 	  			category ?
-	  				posts.filter(post => post.category === category).map(post => <Post key={post.id} data={post}/>)	:
+	  				pid ?
+	  					posts.filter(post => post.id === pid).map(post => 
+	  					<Post key={post.id} data={post}/>)
+	  				:
+	  				posts.filter(post => post.category === category).map(post => 
+	  					<Post key={post.id} data={post}/>)	:
 	  			posts.map(post => (<Post key={post.id} data={post}/>))
 	  		}
 

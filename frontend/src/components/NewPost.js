@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postCreatePost} from '../actions'
-import { withRouter } from 'react-router'
+import { withRouter, Redirect } from 'react-router'
 import serializeForm from 'form-serialize'
 import uuidv4 from 'uuid/v4'
 
@@ -21,14 +21,20 @@ class NewPost extends Component {
 			commentCount: 0,
 			deleted: false,
 		})
+		this.setState({redirect: true})
+	}
+
+	state = {
+		redirect: false,
 	}
 
 	render(){
 
 		const { categories } = this.props
+		const {redirect } = this. state
 
 	  	return (
-
+	  		redirect ? <Redirect to={"/"}/> :
 			    <div className='post-box'>
 			    	<form onSubmit={this.handleSubmit}>
 			    	<h3>Create new post</h3>

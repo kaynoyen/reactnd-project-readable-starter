@@ -37,7 +37,7 @@ class App extends Component {
           <Switch>
             <Route path="/:category/:pid/:cid/edit" component={EditComment}/>
             <Route path="/:category/:pid/edit" component={EditPost}/>
-            <Route path="/:category?" component={ListPosts}/>
+            <Route path="/:category?/:pid?" component={ListPosts}/>
           </Switch>
           <Route exact path="/:category/:pid" component={ListComments}/>
           

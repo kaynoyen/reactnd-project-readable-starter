@@ -67,6 +67,29 @@ h4 {
   float: left;
 }
 
+.delete-button {
+
+  border: 0px;
+  border-radius: 5px;
+  box-shadow: none;
+  color: white;
+  background-color: grey;
+  font-size: 14px;
+  margin-right: 5px;
+  display: inline-block;}
+
+.edit-button {
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: none;
+  color: black;
+  background-color: white;
+  font-size: 14px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+
 .post-box {
   margin-left: 20px;
   margin-top: 5px;
@@ -142,4 +165,5 @@ h4 {
 
 .post-title {
   margin-bottom: 5px;
+  display: inline-block;
 }

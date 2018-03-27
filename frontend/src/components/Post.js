@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postUpVotePost, postDownVotePost} from '../actions'
+import { postUpVotePost, postDownVotePost, postDeletePost} from '../actions'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import Timestamp from 'react-timestamp'
@@ -9,27 +9,36 @@ class Post extends Component {
 
 	render(){
 	  const { id, timestamp, title, body, author, category, commentCount, voteScore} = this.props.data
-	  const { postUpVotePost, postDownVotePost } = this.props
+	  const { postUpVotePost, postDownVotePost, postDeletePost } = this.props
 
 	  const pid = id
 
 	  return (
 	    <div className='post-box'>
 
-	      <Link to={`/${category}/${pid}`}><h3 className='post-title'>{title}</h3></Link>
-	      <Timestamp className='time-stamp' time={timestamp/1000} />
+	    	<div>
+	      		<Link to={`/${category}/${pid}`}><h3 className='post-title'>{title}</h3></Link>
+	      		
+	      	</div>
 
-	      <h4>by <span className='author'>{author}</span></h4>
-	      <p>{body}</p>
+	      	<div>
+		      <Timestamp className='time-stamp' time={timestamp/1000} />
+		    </div>
 
-	      <div>
-		      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/edit`}>edit</Link>
-		      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/delete`}>delete</Link>
-		      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/delete`}>comment ({commentCount})</Link>
-		      <button className='vote-button' onClick ={() => postDownVotePost(pid)} style={{backgroundColor: 'red'}}>downvote</button>
-		      <button className='vote-button' onClick ={() => postUpVotePost(pid)} style={{backgroundColor: 'green'}}>upvote</button>
-		      <span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
-	      </div>
+		      <h4>by <span className='author'>{author}</span></h4>
+		      <p>{body}</p>
+
+		      <div>
+			      
+			      <Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/delete`}>comment ({commentCount})</Link>
+
+			      <Link to={`/${category}/${pid}/edit`}> <button className='edit-button' >edit</button></Link>
+		      	<button className='delete-button' onClick={() => postDeletePost(pid)}>delete</button>
+
+			      <button className='vote-button' onClick ={() => postDownVotePost(pid)} style={{backgroundColor: 'red'}}>downvote</button>
+			      <button className='vote-button' onClick ={() => postUpVotePost(pid)} style={{backgroundColor: 'green'}}>upvote</button>
+			      <span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>
+		      </div>
 	      
 	    </div>
 	  )
@@ -46,6 +55,7 @@ function mapDispatchToProps (dispatch) {
   return {
     postUpVotePost: (pid) => dispatch(postUpVotePost(pid)),
     postDownVotePost: (pid) => dispatch(postDownVotePost(pid)),
+    postDeletePost: (pid) => dispatch(postDeletePost(pid)),
   }
 }
 

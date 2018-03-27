@@ -11,7 +11,8 @@ import {
 	UPVOTE_COMMENT,
 	DOWNVOTE_COMMENT,
 	UPDATE_COMMENT,
-	CREATE_POST
+	CREATE_POST,
+	DELETE_POST
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -119,6 +120,20 @@ function posts (state = {
 						}
 					}
 				}
+
+		case DELETE_POST:
+
+			return {
+				...state,
+					items: {
+						...Object.keys(state.items).filter(item => 
+							item != action.pid).reduce((all, one) => 
+							({...all,
+								[one]: state.items[one],
+							}),{})
+					}
+
+			}
 
 		default :
 			return state

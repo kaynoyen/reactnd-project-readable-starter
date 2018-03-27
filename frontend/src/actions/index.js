@@ -272,16 +272,29 @@ export function postCreatePost(json) {
 	}
 }
 
-/*
-id 
-timestamp 
-title 
-body
-author
-category 
-*/
+// DELETE POSTS
 
+export const DELETE_POST = 'DELETE_POST'
 
+export const deletePost = (pid) => ({
+	type: DELETE_POST,
+	pid,
+})
+
+export function postDeletePost(pid) {
+	return dispatch => {
+		const url = `${process.env.REACT_APP_BACKEND}/posts/${pid}`
+		return fetch(url, { 
+			headers: { 'Authorization': 'whatever-you-want',
+			'Accept': 'application/json',
+  			'Content-Type': 'application/json'
+		},
+			credentials: 'include',
+			method: 'DELETE',
+		}).then((res) => dispatch(deletePost(pid)))
+		
+	}
+}
 
 
 
