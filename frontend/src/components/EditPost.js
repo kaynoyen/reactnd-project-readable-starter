@@ -18,8 +18,6 @@ class EditPost extends Component {
 		this.setState({redirect: true})
 	}
 
-
-
 	render(){
 
 		const { pid, category } = this.props.match.params

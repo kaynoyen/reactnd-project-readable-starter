@@ -34,10 +34,11 @@ class App extends Component {
         </header>
         <div>
           <Route path="/" component={Navigation}/>
-          <Route path="/new" component={NewPost}/>
+          
           
           
           <Switch>
+            <Route path="/new" component={NewPost}/>
             <Route path="/:category/:pid/:cid/edit" component={EditComment}/>
             <Route path="/:category/:pid/edit" component={EditPost}/>
             <Route path="/:category?/:pid?" component={ListPosts}/>

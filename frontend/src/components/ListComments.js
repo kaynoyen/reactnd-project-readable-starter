@@ -60,7 +60,7 @@ class ListComments extends Component {
             postDeleteComment={postDeleteComment}
             category={match.params.category}
             />) : 
-        <div>No comments</div>
+        <div></div>
 
 	    )
 	}

@@ -146,13 +146,31 @@ h4 {
   font-size: 15px;
 }
 
+.order-input {
+  width: 100px;
+  margin: 3px;
+  margin-left: 450px;
+  height: 30px;
+  padding: 10px;
+  font-size: 15px;
+
+}
+
 .edit-label {
   display: inline-block;
   width: 70px;
   text-align: right;
 }
 
+.nav-bar {
+  list-style-type: none;
 
+}
+
+.nav-element {
+  display: inline;
+  margin-right: 10px;
+}
 
 .author {
   color: blue;

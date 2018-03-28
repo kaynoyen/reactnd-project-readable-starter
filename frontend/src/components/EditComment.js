@@ -18,8 +18,6 @@ class EditComment extends Component {
 		this.setState({redirect: true})
 	}
 
-
-
 	render(){
 		const { cid, pid, category } = this.props.match.params
 		const { comments, postUpVoteComment, postDownVoteComment, postUpdateComment} = this.props
