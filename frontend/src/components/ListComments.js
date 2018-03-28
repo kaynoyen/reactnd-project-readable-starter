@@ -39,19 +39,21 @@ class ListComments extends Component {
   componentDidMount() {
 
     const { fetchComments, match, comments } = this.props
-    Object.keys(comments).length < 2 ? fetchComments(match.params.pid) : null
+    console.log(comments[match.params.pid])
+    comments[match.params.pid] ? console.log('DO NOTHING') : fetchComments(match.params.pid)
 
   }
 
 	render(){
 
-		const { comments, loadingComments, match, postUpVoteComment, postDownVoteComment, postDeleteComment } = this.props
+		const { comments, match, postUpVoteComment, postDownVoteComment, postDeleteComment } = this.props
     const pid = match.params.pid
+    const loadingComments = comments.isFetching
 
 	  return (
 
-	  	loadingComments ? <Loading delay={200} type='spin' color='#222'/> : 
-        comments[pid] ? Object.keys(comments[pid].items).map( 
+	  	loadingComments ? <Loading delay={2000} type='spin' color='#222'/> : 
+        comments[pid] && Object.keys(comments[pid].items).length > 0 ? Object.keys(comments[pid].items).map( 
           comment => <Comment 
             key={comments[pid].items[comment].id} 
             data={comments[pid].items[comment]}
@@ -69,7 +71,6 @@ class ListComments extends Component {
 function mapStateToProps ({comments}) {
   return {
     comments: comments,
-    loadingComments: comments.isFetching,
   }
 }
 

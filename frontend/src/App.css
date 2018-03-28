@@ -185,3 +185,16 @@ h4 {
   margin-bottom: 5px;
   display: inline-block;
 }
+
+.not-found {
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 5px;
+  padding: 15px;
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color: #888888;
+  width: 500px;
+}

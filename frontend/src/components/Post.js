@@ -2,18 +2,29 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postUpVotePost, postDownVotePost, postDeletePost} from '../actions'
 import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { withRouter, Redirect} from 'react-router'
 import Timestamp from 'react-timestamp'
 
 class Post extends Component {
 
+	state = {
+		redirect: false,
+	}
+
+	handleDelete = (pid) => {
+		this.props.postDeletePost(pid)
+		this.setState({redirect: true})
+	}
+
 	render(){
 	  const { id, timestamp, title, body, author, category, commentCount, voteScore} = this.props.data
 	  const { postUpVotePost, postDownVotePost, postDeletePost } = this.props
-
+	  const { redirect } = this.state
 	  const pid = id
 
 	  return (
+
+	  	redirect ? <Redirect to={"/"}/> :
 	    <div className='post-box'>
 	    	<div>
 	      		<Link to={`/${category}/${pid}`}><h3 className='post-title'>{title}</h3></Link>	
@@ -29,7 +40,7 @@ class Post extends Component {
 		   	<div>
 				<Link style={{marginRight: 10, fontWeight: 'bold'}} to={`/${category}/${pid}/new/`}>comment ({commentCount})</Link>
 			    <Link to={`/${category}/${pid}/edit`}> <button className='edit-button' >edit</button></Link>
-		      	<button className='delete-button' onClick={() => postDeletePost(pid)}>delete</button>
+		      	<button className='delete-button' onClick={() => this.handleDelete(pid)}>delete</button>
 			   	<button className='vote-button' onClick ={() => postDownVotePost(pid)} style={{backgroundColor: 'red'}}>downvote</button>
 			   	<button className='vote-button' onClick ={() => postUpVotePost(pid)} style={{backgroundColor: 'green'}}>upvote</button>
 			  	<span style={{marginRight: 10, float: 'right'}}>({voteScore})</span>

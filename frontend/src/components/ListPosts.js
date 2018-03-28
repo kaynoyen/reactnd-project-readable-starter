@@ -60,7 +60,7 @@ class ListPosts extends Component {
 	  			<Loading delay={200} type='spin' color='#222'/> :
 	  			showingPosts.length > 0 ?
 	  				showingPosts.map(post => <Post key={post.id} data={post}/>):
-	  				<div>404 Page not found</div>
+	  				<div className='not-found'>404 Page not found</div>
 	  		}
 
 	  	</div>

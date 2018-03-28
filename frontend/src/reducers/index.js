@@ -293,6 +293,29 @@ function comments (state = {
 		
 			}
 
+		case CREATE_POST :
+
+			return {
+				...state,
+				[action.json.id]: {
+					items: {},
+				}
+			}
+
+		case DELETE_POST :
+
+			return {
+
+				...Object.keys(state).filter(key => key !== action.pid).reduce((all, one) => (
+				{
+					...all,
+					[one]: {
+						...state[one]
+					}
+				}),{}),
+				isFetching: state.isFetching,
+			}
+
 		default :
 			return state
 	}
