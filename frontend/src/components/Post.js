@@ -18,7 +18,7 @@ class Post extends Component {
 
 	render(){
 	  const { id, timestamp, title, body, author, category, commentCount, voteScore} = this.props.data
-	  const { postUpVotePost, postDownVotePost, postDeletePost } = this.props
+	  const { postUpVotePost, postDownVotePost} = this.props
 	  const { redirect } = this.state
 	  const pid = id
 
@@ -50,9 +50,8 @@ class Post extends Component {
 	}
 }
 
-function mapStateToProps ({}) {
-  return {
-  }
+function mapStateToProps () {
+  return {}
 }
 
 

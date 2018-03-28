@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postUpdateComment, postDownVoteComment, postUpVoteComment} from '../actions'
 import { withRouter, Redirect } from 'react-router'
-import Loading from 'react-loading'
 import serializeForm from 'form-serialize'
 
 class EditComment extends Component {
@@ -20,7 +19,7 @@ class EditComment extends Component {
 
 	render(){
 		const { cid, pid, category } = this.props.match.params
-		const { comments, postUpVoteComment, postDownVoteComment, postUpdateComment} = this.props
+		const { comments, postUpVoteComment, postDownVoteComment } = this.props
 		const { redirect} = this.state
 
 	  	return (

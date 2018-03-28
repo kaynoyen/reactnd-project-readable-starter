@@ -31,7 +31,7 @@ class NewPost extends Component {
 	render(){
 
 		const { categories } = this.props
-		const {redirect } = this. state
+		const { redirect } = this.state
 
 	  	return (
 	  		redirect ? <Redirect to={"/"}/> :

@@ -25,7 +25,7 @@ export function fetchCategories() {
 	}
 }
 
-// FETCH POSTS (ALL)
+// FETCH POSTS
 
 export const REQUEST_POSTS = "REQUEST_POSTS"
 export const RECEIVE_POSTS = "RECEIVE POSTS"
@@ -189,11 +189,10 @@ export function postDownVoteComment(cid, pid) {
 
 export const UPDATE_POST = 'UPDATE_POST'
 
-export const updatePost = (pid, json, timestamp) => ({
+export const updatePost = (pid, json) => ({
 	type: UPDATE_POST,
 	pid,
 	json,
-	timestamp,
 })
 
 export function postUpdatePost(pid, json) {
@@ -209,9 +208,8 @@ export function postUpdatePost(pid, json) {
 			body: JSON.stringify({
                     title: json.title,
                     body: json.body,
-                    timestamp: Date.now(),
                 }),
-		}).then((res) => dispatch(updatePost(pid, json, Date.now())))
+		}).then((res) => dispatch(updatePost(pid, json)))
 		
 	}
 }
@@ -220,12 +218,11 @@ export function postUpdatePost(pid, json) {
 
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 
-export const updateComment = (cid, pid, json, timestamp) => ({
+export const updateComment = (cid, pid, json) => ({
 	type: UPDATE_COMMENT,
 	cid,
 	pid,
 	json,
-	timestamp,
 })
 
 export function postUpdateComment(cid, pid, json) {
@@ -240,9 +237,8 @@ export function postUpdateComment(cid, pid, json) {
 			method: 'PUT',
 			body: JSON.stringify({
                     body: json.body,
-                    timestamp: Date.now(),
                 }),
-		}).then((res) => dispatch(updateComment(cid, pid, json, Date.now())))
+		}).then((res) => dispatch(updateComment(cid, pid, json)))
 		
 	}
 }
@@ -321,7 +317,7 @@ export function postDeleteComment(cid, pid) {
 	}
 }
 
-// CREATE POST
+// CREATE COMMENT
 
 export const CREATE_COMMENT = 'CREATE_COMMENT'
 

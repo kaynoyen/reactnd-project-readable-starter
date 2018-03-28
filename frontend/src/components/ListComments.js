@@ -39,8 +39,7 @@ class ListComments extends Component {
   componentDidMount() {
 
     const { fetchComments, match, comments } = this.props
-    console.log(comments[match.params.pid])
-    comments[match.params.pid] ? console.log('DO NOTHING') : fetchComments(match.params.pid)
+    comments[match.params.pid] ? null : fetchComments(match.params.pid)
 
   }
 

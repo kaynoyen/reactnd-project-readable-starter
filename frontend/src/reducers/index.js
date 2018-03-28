@@ -118,7 +118,6 @@ function posts (state = {
 						[action.pid]: {
 							...state.items[action.pid],
 							...action.json,
-							timestamp: action.timestamp,
 						}
 					}
 				}
@@ -243,7 +242,6 @@ function comments (state = {
 							[action.cid]: {
 								...state[action.pid].items[action.cid],
 								...action.json,
-								timestamp: action.timestamp,
 							}
 						}
 					}

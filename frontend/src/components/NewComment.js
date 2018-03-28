@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postCreateComment } from '../actions'
 import { withRouter, Redirect } from 'react-router'
-import Loading from 'react-loading'
 import serializeForm from 'form-serialize'
 import uuidv4 from 'uuid/v4'
 
@@ -32,8 +31,7 @@ class NewComment extends Component {
 
 
 	render(){
-		const { cid, pid, category } = this.props.match.params
-		const { postCreateComment } = this.props
+		const { pid, category } = this.props.match.params
 		const { redirect } = this.state
 
 	  	return (
