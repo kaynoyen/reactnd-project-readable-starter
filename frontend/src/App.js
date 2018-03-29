@@ -28,13 +28,17 @@ class App extends Component {
       <div>
 
         <header className="App-header">
-          <h1 className="App-title"><Link style={{color: 'white', textDecoration: 'none'}} to="/">Readable</Link></h1>
-          <Link to="/new"><button className='post-button'>new post</button></Link>      
-
+          <h1 className="App-title">
+            <Link style={{color: 'white', textDecoration: 'none'}} to="/">Readable</Link>
+          </h1>
         </header>
-        <div>
-          <Route path="/" component={Navigation}/>
-          
+
+          <div className="side-bar">
+            <Link to="/new"><button className='post-button'>new post</button></Link> 
+            <Route path="/" component={Navigation}/>
+          </div>
+
+          <div className='main-container'>
           
           
           <Switch>

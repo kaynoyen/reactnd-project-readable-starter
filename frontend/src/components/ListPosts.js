@@ -8,7 +8,8 @@ function OrderSelector (props) {
 
 	return (
 		<div>
-		<select value={props.value} name='category' className="order-input" onChange={(event) => props.handleChange(event.target.value)}>
+		<span className="order-container">sort by</span>
+		<select className="order-input" value={props.value} name='category' onChange={(event) => props.handleChange(event.target.value)}>
 			<option value="" disabled>Sort by...</option>
 			<option value="date">date</option>
 			<option vlaue="score">score</option>

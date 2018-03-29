@@ -56,15 +56,14 @@ h4 {
 
 .post-button {
   border: 1px solid;
+  padding: 5px;
   box-shadow: none;
-  border-radius: 0px;
-  color: white;
+  border-radius: 6px;
+  color: black;
   font-size: 14px;
-  margin-left: 280px;
-  margin-top: 18px;
-  background-color: black;
+  margin-top: 15px;
+  background-color: white;
   font-weight: bold;
-  float: left;
 }
 
 .delete-button {
@@ -99,6 +98,7 @@ h4 {
   border-width: 1px;
   border-color: #888888;
   width: 500px;
+
 }
 
 .comment-box {
@@ -113,6 +113,36 @@ h4 {
   border-color: #888888;
   width: 500px;
   background-color: #e9e9e9;
+
+}
+
+.main-container {
+  float:left;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.side-bar {
+  margin-top: 10px;
+  float:left;
+  display: inline;
+  margin-left: 40px;
+}
+
+.nav-container {
+  margin-top: 20px;
+}
+
+.nav-bar {
+
+  text-align: left;
+  margin: 20px;
+  padding: 0px;
+}
+
+.nav-element {
+  margin-bottom: 3px;
+  padding: 0px;
 }
 
 .text-input {
@@ -147,12 +177,22 @@ h4 {
 }
 
 .order-input {
+  border: 1px solid;
   width: 100px;
-  margin: 3px;
-  margin-left: 450px;
-  height: 30px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  height: 29px;
   padding: 10px;
   font-size: 15px;
+  display: inline;
+  background-color: white;
+  font-weight: bold;
+
+}
+
+.order-container {
+  margin-left: 390px;
 
 }
 
@@ -162,15 +202,7 @@ h4 {
   text-align: right;
 }
 
-.nav-bar {
-  list-style-type: none;
 
-}
-
-.nav-element {
-  display: inline;
-  margin-right: 10px;
-}
 
 .author {
   color: blue;

@@ -14,13 +14,15 @@ class Navigation extends Component {
 		return (
 
 				categories.isFetching ? <div>loading...</div> : 
-				<ul className='nav-bar'>
-					{categories.items.map(category => (
-						<li className='nav-element' key={category.name}>
-							<Link to={`/${category.path}`}>{category.name}</Link>
-						</li>))}
-				</ul>
-				
+				<div className='nav-container'>
+					<h4>Categories </h4>
+					<ul className='nav-bar'>
+						{categories.items.map(category => (
+							<li className='nav-element' key={category.name}>
+								<Link to={`/${category.path}`}>{category.name}</Link>
+							</li>))}
+					</ul>
+				</div>
 
     	)
 
