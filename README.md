@@ -8,7 +8,7 @@ This is the final assessment project for Udacity's Redux course: a content and c
     - `cd api-server`
     - `npm install`
     - `node server`
-* Install and start Frontend
+* Install and start frontend
     - `cd frontend`
     - `npm install`
     - `npm start`
